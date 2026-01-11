@@ -1,0 +1,30 @@
+/* Les bulles de notifications qui surgissent (Pop-ups) */
+.notification {
+    background: #282a36;        /* Fond sombre comme tes workspaces */
+    border: 3px solid #111111;  /* Tes bordures noires de 3px */
+    border-radius: 12px;
+    margin: 8px;
+    padding: 10px;
+    color: #f8f8f2;
+}
+
+/* Le titre de la notification en mauve (assorti à l'horloge) */
+.notification-content .summary {
+    color: #bd93f9;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Le corps du message en bleu (assorti au CPU) */
+.notification-content .body {
+    color: #8be9fd;
+}
+
+/* Le panneau qui s'ouvre quand on clique sur la cloche */
+.control-center {
+    background: #282a36;
+    border: 3px solid #111111;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
+}

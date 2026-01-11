@@ -1,0 +1,159 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 38,
+    "margin-top": 10,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 0,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "custom/spotify",
+        "clock",
+        "custom/weather"
+    ],
+    "modules-right": [
+        "group/hardware",
+        "custom/vpn",
+        "pulseaudio",
+        "network",
+        "battery",
+        "tray",
+        "custom/power",
+        "custom/notification"
+    ],
+    "hyprland/workspaces": {
+        "format": "{icon}", /* On remet les icônes */
+        "on-click": "activate",
+        "format-icons": {
+            "active": "", /* Le point plein */
+            "default": "" /* Le cercle vide */
+        },
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+    "clock": {
+        "format": "{:%H:%M  |  %d %b}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
+    },
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "🔇 Muet",
+        "format-icons": {
+            "default": [
+                "󰟎",
+                "󰋍",
+                ""
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "  Connecté",
+        "format-disconnected": "⚠  Hors ligne",
+        "tooltip-format": "{ifname} via {gwaddr}"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": "⚡ {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+    "cpu": {
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "interval": 10,
+        "format": " {usage}%", /* Icône PUIS Chiffre */
+        "max-length": 10,
+        "on-click": "kitty btop"
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {}%", /* Icône PUIS Chiffre */
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": "RAM utilisée : {used:0.1f}G",
+        "on-click": "kitty btop"
+    },
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "memory"
+        ],
+        "spacing": 0
+    },
+    "custom/weather": {
+        "format": "{}",
+        "return-type": "json", /* INDISPENSABLE : Dit à Waybar de lire le JSON du script */
+        "exec": "/home/asmk/.config/waybar/scripts/weather.py", /* Le chemin vers ton script */
+        "interval": 600, /* Actualise toutes les 10 minutes */
+        "on-click": "xdg-open https://wttr.in/Paris" /* Ouvre la météo détaillée au clic */
+    },
+    "custom/vpn": {
+        "format": "{}",
+        "exec": "$HOME/.config/waybar/scripts/vpn.sh", /* Vérifie le chemin ! */
+        "return-type": "json",
+        "interval": 5, /* Vérifie toutes les 5 secondes */
+        "on-click": "$HOME/.config/waybar/scripts/vpn.sh", /* Force l'actualisation au clic */
+        "tooltip": true
+    },
+    "custom/spotify": {
+        "format": "  {}",
+        "max-length": 40, /* Coupe le texte s'il est trop long */
+        "interval": 1, /* Met à jour chaque seconde */
+        /* La commande magique pour avoir "Artiste - Titre" */
+        "exec": "playerctl metadata --format '{{artist}} - {{title}}'",
+        /* ASTUCE : Le module se cache si Spotify n'est pas ouvert */
+        "exec-if": "pgrep spotify",
+        /* Contrôles à la souris */
+        "on-click": "playerctl play-pause", /* Clic Gauche : Pause/Play */
+        "on-click-right": "playerctl next", /* Clic Droit : Suivant */
+        "on-scroll-up": "playerctl previous", /* Molette haut : Précédent */
+        "on-scroll-down": "playerctl next" /* Molette bas : Suivant */
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='#f38ba8'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='#f38ba8'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='#f38ba8'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='#f38ba8'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    }
+}

@@ -1,0 +1,103 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "margin-top": 10,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 10,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock",
+        "custom/weather"
+    ],
+    "modules-right": [
+        "group/hardware",
+        "pulseaudio",
+        "network",
+        "battery",
+        "custom/power"
+    ],
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        },
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+    "clock": {
+        "format": "{:%H:%M  |  %d %b}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "🔇 Muet",
+        "format-icons": {
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "  Connecté",
+        "format-disconnected": "⚠  Hors ligne",
+        "tooltip-format": "{ifname} via {gwaddr}"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": "⚡ {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+    "cpu": {
+        "interval": 10,
+        "format": "{usage}% ",
+        "max-length": 10,
+        "on-click": "kitty btop"
+    },
+    "memory": {
+        "interval": 30,
+        "format": "{}% ",
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": "RAM utilisée : {used:0.1f}G",
+        "on-click": "kitty btop"
+    },
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "memory",
+            "cpu"
+        ]
+    },
+    "custom/weather": {
+        "format": "{}",
+        "interval": 3600,
+        "exec": "curl -s 'https://wttr.in/Paris?format=%c+%t'",
+        "on-click": "kitty --hold -e curl wttr.in/Paris"
+    }
+}

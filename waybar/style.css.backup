@@ -1,0 +1,193 @@
+/* --- PALETTE DE COULEURS (Thème Clinique Moderne) --- */
+@define-color fond-sombre #1e1e2e;
+@define-color fond-clair #313244;
+@define-color texte #cdd6f4;
+@define-color accent-bleu #89b4fa;
+@define-color accent-mauve #cba6f7;
+@define-color accent-rouge #f38ba8;
+@define-color accent-vert #a6e3a1;
+
+* {
+    border: none;
+    font-family: "JetBrains Mono Nerd Font", "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: rgba(43, 48, 59, 0);
+    margin: 10px 15px 0 15px;
+    border-radius: 15px;
+    margin-top: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+/* --- STYLE GÉNÉRAL DES MODULES (Bulles) --- */
+/* Note : J'ai enlevé cpu et memory d'ici car ils sont gérés dans le groupe plus bas */
+#workspaces,
+#custom-weather,
+#clock,
+#battery,
+#network,
+#pulseaudio,
+#tray,
+#custom-media {
+    background-color: rgba(43, 48, 59, 0.9);
+    /* Ta couleur de fond standard */
+    color: #ffffff;
+    padding: 5px 15px;
+    /* L'épaisseur standard */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* On cible LES DEUX possibilités pour être sûr que ça marche */
+#hardware,
+#group-hardware {
+    /* Ta couleur de fond (Gris bleuté) */
+    background-color: rgba(43, 48, 59, 0.9);
+
+    /* Dimensions et arrondi */
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 15px;
+
+    /* Bordure de test (Optionnel : supprime la ligne si tu vois le fond gris) */
+    /* border: 1px solid white; */
+}
+
+/* On nettoie l'intérieur pour les deux possibilités */
+#hardware *,
+#group-hardware * {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    border: none;
+    box-shadow: none;
+}
+
+/* La petite séparation entre RAM et CPU */
+#hardware #memory,
+#group-hardware #memory {
+    padding-right: 10px;
+    margin-right: 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ================================================== */
+/* SECTION WORKSPACES (Début)             */
+/* ================================================== */
+/* --- WORKSPACES (Style Original + Effet Survol) --- */
+
+.modules-left,
+.modules-center,
+.modules-right {
+    background: @fond-sombre;
+    color: @texte;
+    border-radius: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 2px solid @fond-clair;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    margin: 0 4px;
+    border-radius: 16px;
+    background: transparent;
+    color: #45475a;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* État "Occupé" (Bleu) */
+#workspaces button:not(.empty) {
+    color: @accent-bleu;
+    background: rgba(137, 180, 250, 0.1);
+}
+
+/* État "Actif" (Mauve) */
+#workspaces button.active {
+    color: @fond-sombre;
+    background: @accent-mauve;
+    min-width: 30px;
+}
+
+/* --- C'EST ICI QUE ÇA CHANGE : L'EFFET SURVOL --- */
+#workspaces button:hover {
+    background: @texte;
+    /* Fond blanc */
+    color: @fond-sombre;
+    /* Texte foncé */
+
+    /* On ajoute la lueur mauve autour */
+    box-shadow: 0 0 10px 2px rgba(203, 166, 247, 0.6);
+
+    /* Une petite animation fluide */
+    transition: all 0.2s ease;
+}
+
+/* ================================================== */
+/* SECTION WORKSPACES (Fin)              */
+/* ================================================== */
+
+/* --- COULEURS DES TEXTES --- */
+#clock {
+    color: @accent-bleu;
+}
+
+#pulseaudio {
+    color: @accent-mauve;
+}
+
+#network {
+    color: @accent-bleu;
+}
+
+#battery {
+    color: @accent-vert;
+}
+
+#battery.warning {
+    color: #fab387;
+}
+
+#battery.critical {
+    color: @accent-rouge;
+}
+
+#custom-power {
+    color: @accent-rouge;
+    margin-right: 5px;
+}
+
+/* --- EFFETS DE SURVOL (HOVER) --- */
+/* J'ai ajouté #group-hardware ici pour qu'il s'illumine aussi ! */
+#pulseaudio:hover,
+#network:hover,
+#custom-weather:hover,
+#clock:hover,
+#battery:hover,
+#backlight:hover,
+#custom-power:hover,
+#tray:hover,
+#hardware:hover {
+    background-color: rgba(203, 166, 247, 0.3);
+    box-shadow: 0 0 10px 2px rgba(203, 166, 247, 0.5);
+    color: #ffffff;
+}
+
+#workspaces button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 5px rgba(203, 166, 247, 0.8);
+    transition: all 0.2s ease;
+}
