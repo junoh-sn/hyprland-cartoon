@@ -228,6 +228,21 @@ window#waybar {
     padding: 0 10px;
 }
 
+#custom-arch {
+    font-weight: bold;
+    font-size: 16px;
+    /* Taille du texte R C H */
+    color: #ffffff;
+    /* Texte en blanc pour le contraste */
+    padding: 0 15px;
+    margin: 5px;
+    border: 3px solid #111111;
+    /* Ta bordure noire de 3px */
+    border-radius: 12px;
+    background-color: rgba(40, 42, 54, 0.6);
+    /* Transparent */
+}
+
 /* --- EFFETS DE SURVOL (HOVER) --- */
 /* J'ai ajouté #group-hardware ici pour qu'il s'illumine aussi ! */
 #pulseaudio:hover,
