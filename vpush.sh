@@ -12,4 +12,4 @@ git commit -m "Sauvegarde Setup Mauve : $(date +'%d/%m/%Y %H:%M')"
 git push
 
 # Affiche une notification sur ton bureau
-notify-send "🚀 GitHub à jour" "Tes fichiers CSS et scripts sont en sécurité."
+notify-send -i "github" "" GitHub à jour" "Tes fichiers CSS et scripts sont en sécurité."
