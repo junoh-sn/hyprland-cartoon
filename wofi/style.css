@@ -1,0 +1,36 @@
+window {
+    margin: 0px;
+    background-color: rgba(30, 30, 46, 0.8); /* Dark transparent */
+    border: 2px solid #bd93f9; /* Ton violet fétiche */
+    border-radius: 15px;
+    font-family: "JetBrainsMono Nerd Font";
+}
+
+#entry:selected {
+    background-color: #8be9fd;
+    color: #111111;
+    font-weight: bold;
+    border-radius: 10px;
+}
+/* Masque complètement la zone de texte de recherche */
+#input {
+    display: none;
+    visibility: hidden;
+}
+
+/* Centre les éléments restants */
+#scroll {
+    margin: 10px;
+}
+
+/* Cache l'intégralité de la barre de recherche en haut */
+#input {
+    margin-top: -50px; /* Aspire la barre noire vers le haut */
+    margin-bottom: 10px;
+    opacity: 0; /* La rend invisible */
+}
+
+/* On s'assure que le contenu (tes thèmes) reste bien visible */
+#inner-box {
+    margin: 5px;
+}
