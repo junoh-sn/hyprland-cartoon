@@ -1,0 +1,228 @@
+@import "mocha.css";
+@import url("css/modules.css");
+
+/* Reset */
+* {
+    font-family: "JetBrains Mono Nerd Font Propo";
+    font-size: 14px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+/* Capsule externe */
+window#waybar {
+    background-color: alpha(@bar, 0.50);
+    border: 0.5px solid alpha(@text, 0.10);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px alpha(@crust, 0.55);
+}
+
+window#waybar>box {
+    background-color: alpha(@bar, 0.18);
+    border: 0.5px solid alpha(@text, 0.08);
+    border-radius: 16px;
+    padding: 2px 12px;
+
+    /* reflets glass */
+    box-shadow:
+        inset 0 1px 0 alpha(@text, 0.06),
+        inset 0 -1px 0 alpha(@crust, 0.60);
+}
+
+/* Tooltips (globaux) */
+tooltip {
+    background: rgba(15, 23, 42, 0.96);
+    border: 1px solid rgba(129, 140, 248, 0.5);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 13px;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+}
+
+tooltip label {
+    color: #e5e7eb;
+    padding: 4px 0;
+}
+
+/* Groupes de modules (connect / audio / system) */
+#group-connect,
+#group-audio,
+#group-system {
+    background-color: alpha(@bar, 0.24);
+    border: 1px solid alpha(@surface2, 0.55);
+    border-radius: 12px;
+    margin-right: 10px;
+}
+
+#group-connect .conn-hidden {
+    opacity: 0.0;
+}
+
+#group-audio .audio-hidden {
+    opacity: 0.0;
+}
+
+#group-system .sys-hidden {
+    opacity: 0.0;
+}
+
+/* ================== MODULE MÉTÉO CATPPUCCIN MOCHA ================== */
+
+/* Capsule météo de base */
+#custom-weather {
+    background: linear-gradient(135deg,
+            alpha(@blue, 0.24) 0%,
+            alpha(@mauve, 0.24) 40%,
+            alpha(@lavender, 0.24) 100%);
+    background-size: 220% 220%;
+    border-radius: 11px;
+    padding: 0 8px;
+    margin: 3px 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    border: 1px solid alpha(@surface2, 0.85);
+    color: @text;
+    text-shadow: 0 1px 2px alpha(@crust, 0.80);
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    transition:
+        background-position 0.4s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+/* Icône / texte dans la capsule */
+#custom-weather label {
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    font-weight: 600;
+}
+
+/* Hover léger façon glass */
+#custom-weather:hover {
+    background-position: 100% 50%;
+    box-shadow: 0 4px 16px alpha(@crust, 0.70);
+}
+
+/* ----- Couleurs par condition météo (classes du script) ----- */
+
+/* ☀️ Ensoleillé */
+#custom-weather.sunny {
+    background: linear-gradient(135deg,
+            alpha(@yellow, 0.35) 0%,
+            alpha(@peach, 0.40) 50%,
+            alpha(@red, 0.35) 100%);
+    background-size: 220% 220%;
+    color: @base;
+}
+
+/* 🌙 Ciel clair (nuit) */
+#custom-weather.clear {
+    background: linear-gradient(135deg,
+            alpha(@sky, 0.28) 0%,
+            alpha(@sapphire, 0.35) 40%,
+            alpha(@blue, 0.40) 100%);
+    background-size: 220% 220%;
+    color: @text;
+}
+
+/* ⛅ Partiellement nuageux */
+#custom-weather.partly-cloudy {
+    background: linear-gradient(135deg,
+            alpha(@sky, 0.32) 0%,
+            alpha(@blue, 0.32) 40%,
+            alpha(@mauve, 0.32) 100%);
+    background-size: 220% 220%;
+    color: @base;
+}
+
+/* ☁️ Couvert / nuageux */
+#custom-weather.cloudy,
+#custom-weather.overcast {
+    background: linear-gradient(135deg,
+            alpha(@surface1, 0.90) 0%,
+            alpha(@surface2, 0.95) 50%,
+            alpha(@overlay0, 0.95) 100%);
+    background-size: 220% 220%;
+    color: @subtext0;
+}
+
+/* 🌫️ Brume / brouillard */
+#custom-weather.mist,
+#custom-weather.fog {
+    background: linear-gradient(135deg,
+            alpha(@surface0, 0.95) 0%,
+            alpha(@overlay0, 0.95) 50%,
+            alpha(@overlay1, 0.95) 100%);
+    background-size: 220% 220%;
+    color: @text;
+}
+
+/* 🌧️ Pluie */
+#custom-weather.rain {
+    background: linear-gradient(135deg,
+            alpha(@sapphire, 0.40) 0%,
+            alpha(@blue, 0.45) 50%,
+            alpha(@sky, 0.40) 100%);
+    background-size: 220% 220%;
+    color: @base;
+}
+
+/* 🌨️ Neige */
+#custom-weather.snow {
+    background: linear-gradient(135deg,
+            alpha(@surface1, 0.95) 0%,
+            alpha(@surface2, 0.95) 50%,
+            alpha(@overlay1, 0.95) 100%);
+    background-size: 220% 220%;
+    color: @crust;
+}
+
+/* 🌧️❄️ Sleet */
+#custom-weather.sleet {
+    background: linear-gradient(135deg,
+            alpha(@surface1, 0.95) 0%,
+            alpha(@blue, 0.40) 50%,
+            alpha(@overlay1, 0.95) 100%);
+    background-size: 220% 220%;
+    color: @text;
+}
+
+/* ⛈️ Orage */
+#custom-weather.thunder {
+    background: linear-gradient(135deg,
+            alpha(@crust, 0.95) 0%,
+            alpha(@surface0, 0.95) 45%,
+            alpha(@yellow, 0.60) 100%);
+    background-size: 220% 220%;
+    color: @base;
+}
+
+/* Valeur par défaut */
+#custom-weather.default {
+    background: linear-gradient(135deg,
+            alpha(@surface0, 0.95) 0%,
+            alpha(@surface1, 0.95) 50%,
+            alpha(@surface2, 0.95) 100%);
+    background-size: 220% 220%;
+    color: @text;
+}
+
+/* ----- Bordure dynamique selon la température (classes : cold / mild / hot) ----- */
+
+#custom-weather.cold {
+    border-color: alpha(@sky, 0.95);
+    box-shadow: 0 0 5px alpha(@sky, 0.30);
+}
+
+#custom-weather.mild {
+    border-color: alpha(@green, 0.95);
+    box-shadow: 0 0 4px alpha(@green, 0.28);
+}
+
+#custom-weather.hot {
+    border-color: alpha(@peach, 0.95);
+    box-shadow: 0 0 6px alpha(@peach, 0.32);
+}
+

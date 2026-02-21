@@ -1,0 +1,253 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "margin-top": 8,
+    "margin-left": 700,
+    "margin-right": 700,
+    "spacing": 0,
+    "fixed-center": true,
+    "reload_style_on_change": true,
+    "modules-left": [
+        "custom/arch",
+        "custom/weather",
+        "custom/cava",
+        "mpris"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "group/hardware",
+        "group/connect",
+        "group/audio",
+        "tray",
+        "group/system",
+        "custom/vpn",
+        "clock"
+    ],
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "persistent-workspaces": {
+            "*": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+            ]
+        },
+        "disable-scroll": true,
+        "all-outputs": false
+    },
+    "hyprland/window": {
+        "separate-outputs": true,
+        "max-length": 45,
+        "format": "{class}::{title}",
+        "rewrite": {
+            "^firefox::(.*)$": " $1",
+            "^(VSCodium|codium)::(.*)$": "󰨞 $2",
+            "^kitty::(.*)$": " $1",
+            "^spotify::(.*)$": " $1",
+            "^discord::(.*)$": "󰙯 $1",
+            "^(brave-browser|Brave-browser)::(.*)$": "󰖟 $2",
+            "^[^:]+::(.*)$": "󰘔 $1"
+        }
+    },
+    "group/hardware": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 250,
+            "children-class": "hw-hidden"
+        },
+        "modules": [
+            "temperature",
+            "custom/nvidia",
+            "cpu",
+            "memory"
+        ]
+    },
+    "cpu": {
+        "format": " {usage}%",
+        "on-click": "kitty -e btop"
+    },
+    "memory": {
+        "format": "󰍛 {percentage}%",
+        "on-click": "kitty -e htop"
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+        "interval": 5,
+        "critical-threshold": 85,
+        "format": " {temperatureC}°C"
+    },
+    "network": {
+        "format-wifi": "",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰖪",
+        "tooltip": true
+    },
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "󰂲",
+        "tooltip": true,
+        "on-click": "blueman-manager"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "󰈈",
+            "deactivated": "󰈉"
+        }
+    },
+    "wireplumber#sink": {
+        "format": "{volume}% ",
+        "format-muted": "󰖁",
+        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+    "wireplumber#source": {
+        "node-type": "Audio/Source",
+        "format": "{volume}% 󰍬",
+        "format-muted": "󰍭",
+        "scroll-step": 5,
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+    },
+    "disk": {
+        "path": "/",
+        "interval": 30,
+        "format": " {percentage_used}%"
+    },
+    "systemd-failed-units": {
+        "format": "󰅚 {nr_failed}"
+    },
+    "clock": {
+        "locale": "fr_FR.utf8",
+        "format": "{:%H:%M}",
+        "format-alt": "{:L%A %d %B %Y · %H:%M}",
+        "tooltip-format": "<big>{:L%Y %B}</big>\\n<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "right",
+            "format": {
+                "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+            }
+        },
+        "on-click-right": "gsimplecal"
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10,
+        "format": "[ {icon} ]"
+    },
+    "custom/arch": {
+        "format": "<span size='xx-large'></span>",
+        "tooltip": false,
+        "on-click": "rofi -show drun -theme ~/.config/rofi/themes/ghost-dark.rasi"
+    },
+    "custom/cava": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/cava.sh",
+        "return-type": "json"
+    },
+    "mpris": {
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "player-icons": {
+            "default": "",
+            "spotify": "",
+            "firefox": ""
+        },
+        "status-icons": {
+            "paused": ""
+        },
+        "max-length": 45,
+        "artist-max-length": 8,
+        "title-max-length": 22,
+        "dynamic-order": [
+            "artist",
+            "title"
+        ],
+        "dynamic-separator": " • ",
+        "ignored-players": [
+            "firefox"
+        ],
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
+    },
+    "custom/updates": {
+        "exec": "~/.config/waybar/scripts/updates.sh",
+        "interval": 300,
+        "return-type": "json",
+        "tooltip": true,
+        "on-click": "kitty -e bash -lc 'yay -Syu'",
+        "on-click-right": "kitty -e bash -lc 'checkupdates; echo; yay -Qum; read -r'"
+    },
+    "custom/nvidia": {
+        "exec": "~/.config/waybar/scripts/nvidia.sh",
+        "return-type": "json",
+        "interval": 3,
+        "tooltip": true,
+        "on-click": "kitty -e nvtop",
+        "format-alt-click": "middle"
+    },
+    "custom/vpn": {
+        "exec": "~/.config/waybar/scripts/vpn_status.sh",
+        "return-type": "json",
+        "interval": 5,
+        "format": "{}",
+        "tooltip": true
+    },
+    "hyprland/language": {
+        "format": "{}",
+        "format-fr": "FR"
+    },
+    "group/connect": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 250,
+            "children-class": "conn-hidden"
+        },
+        "modules": [
+            "bluetooth",
+            "network",
+            "custom/updates",
+            "idle_inhibitor"
+        ]
+    },
+    "group/audio": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 250,
+            "children-class": "audio-hidden"
+        },
+        "modules": [
+            "wireplumber#sink",
+            "wireplumber#source"
+        ]
+    },
+    "group/system": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 250,
+            "children-class": "sys-hidden"
+        },
+        "modules": [
+            "hyprland/language",
+            "systemd-failed-units",
+            "disk",
+            "keyboard-state"
+        ]
+    },
+    "custom/weather": {
+        "format": "{}",
+        "return-type": "json",
+        "exec": "python3 ~/.config/waybar/scripts/weather.py",
+        "interval": 300,
+        "tooltip": true,
+        "on-click": "~/.config/waybar/scripts/weather_kitty.sh",
+        "on-click-right": "xdg-open https://wttr.in/Paris"
+    }
+}
