@@ -1,0 +1,19 @@
+{
+  "layer": "overlay",
+  "positionX": "right",
+  "positionY": "top",
+
+  "timeout": 5,
+
+  "notification-window-width": 360,
+  "notification-window-height": -1,
+
+  "notification-icon-size": 96,
+  "image-visibility": "always",
+
+  "ignore-gtk-theme": true,
+
+  "cssPriority": "user",
+  "cssName": "style.css"
+}
+

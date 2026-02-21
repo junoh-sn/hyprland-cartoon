@@ -1,0 +1,277 @@
+/* Padding global modules */
+#custom-arch,
+#custom-cava,
+#mpris,
+#workspaces,
+#window,
+#group-hardware,
+#cpu,
+#memory,
+#temperature,
+#network,
+#bluetooth,
+#idle_inhibitor,
+#custom-updates,
+#wireplumber,
+#disk,
+#systemd-failed-units,
+#language,
+#keyboard-state,
+#tray,
+#custom-vpn,
+#clock {
+    padding: 0 10px;
+}
+
+/* Gauche */
+#custom-arch {
+    /* mélange approximatif entre @peach (#fab387) et @mauve (#cba6f7) */
+    color: #89dceb;
+    font-weight: 900;
+    padding-right: 2px;
+    margin-right: 8px;
+}
+
+#custom-arch:hover {
+    color: @lavender;
+    /* ou @mauve si tu préfères plus rose */
+}
+
+
+
+
+#mpris {
+    color: @teal;
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+#mpris.Paused {
+    color: @overlay0;
+}
+
+/* Centre */
+/* Centre : workspaces pilule propre */
+#workspaces {
+    background-color: alpha(@bar, 0.10);
+    border-radius: 999px;
+    padding: 0 6px;
+    margin: 0 10px;
+}
+
+/* Style de base : workspaces neutres */
+#workspaces button {
+    min-width: 22px;
+    padding: 0 8px;
+    margin: 0 3px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    color: alpha(@text, 0.35);
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        box-shadow 0.15s ease,
+        padding 0.15s ease;
+}
+
+/* Workspaces vides (gris) */
+#workspaces button.empty {
+    color: alpha(@text, 0.30);
+}
+
+/* Workspaces occupés mais pas actifs */
+#workspaces button:not(.empty):not(.active) {
+    color: alpha(@text, 0.60);
+}
+
+/* Hover sur les workspaces (sauf actif) */
+#workspaces button:hover:not(.active) {
+    background-color: alpha(@surface1, 0.35);
+    color: alpha(@text, 0.95);
+    box-shadow: 0 0 4px alpha(@sapphire, 0.35);
+}
+
+
+/* Workspace actif : pilule plus grande */
+#workspaces button.active {
+    padding: 0 15px;
+    min-width: 30px;
+    font-size: 12px;
+
+    background: linear-gradient(90deg, alpha(@sapphire, 0.85), alpha(@lavender, 0.85));
+    color: @base;
+    box-shadow: 0 0 8px alpha(@sapphire, 0.45);
+}
+
+
+
+#window {
+    background-color: alpha(@bar, 0.22);
+    border: 0.5px solid alpha(@surface2, 0.55);
+    border-radius: 12px;
+    margin-left: 10px;
+    color: @text;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 0 12px;
+}
+
+/* Group hardware */
+#group-hardware {
+    background-color: alpha(@bar, 0.24);
+    border: 1px solid alpha(@surface2, 0.55);
+    border-radius: 12px;
+    margin-right: 10px;
+}
+
+#group-hardware .hw-hidden {
+    opacity: 0.0;
+}
+
+/* Modules système */
+#cpu {
+    color: @rosewater;
+    font-weight: 700;
+}
+
+#memory {
+    color: @mauve;
+    font-weight: 700;
+}
+
+#temperature {
+    color: @yellow;
+    font-weight: 700;
+}
+
+#custom-nvidia {
+    color: @blue;
+    font-weight: 700;
+}
+
+#network {
+    color: @green;
+}
+
+#bluetooth {
+    color: @sapphire;
+}
+
+#idle_inhibitor {
+    color: @overlay1;
+}
+
+#idle_inhibitor.activated {
+    color: @green;
+}
+
+/* Updates */
+#custom-updates {
+    margin: 0 6px;
+    border-radius: 10px;
+    background-color: alpha(@bar, 0.18);
+    border: 0.3px solid alpha(@surface2, 0.90);
+    color: @text;
+}
+
+#custom-updates.none {
+    border-color: alpha(@green, 0.95);
+    opacity: 0.9;
+}
+
+#custom-updates.low {
+    border-color: alpha(@sky, 0.95);
+}
+
+#custom-updates.high {
+    border-color: alpha(@red, 0.95);
+}
+
+/* WirePlumber */
+#wireplumber {
+    color: @peach;
+    font-weight: 800;
+}
+
+#wireplumber.muted {
+    color: @red;
+}
+
+#wireplumber.sink {
+    color: @peach;
+}
+
+#wireplumber.source {
+    color: @sky;
+}
+
+/* systemd + disk + input */
+#systemd-failed-units {
+    color: @red;
+    font-weight: 900;
+}
+
+#disk {
+    color: @mauve;
+    font-weight: 800;
+}
+
+#language {
+    color: @blue;
+    font-weight: 800;
+}
+
+#keyboard-state {
+    color: @peach;
+    font-weight: 800;
+}
+
+/* Tray */
+#tray {
+    padding: 0 12px;
+    margin: 0 10px;
+    border-left: 1px solid alpha(@surface2, 0.55);
+    border-right: 1px solid alpha(@surface2, 0.55);
+    border-radius: 8px;
+}
+
+/* VPN + Clock */
+#custom-vpn.connected {
+    color: @green;
+}
+
+#custom-vpn.disconnected {
+    color: @red;
+}
+
+#clock {
+    color: @sky;
+    font-weight: 900;
+}
+
+/* Cava */
+#custom-cava {
+    padding: 0 15px;
+    margin: 5px 3px;
+    border-left: 2px solid alpha(@surface2, 0.55);
+
+}
+
+#custom-cava.low {
+    color: @blue;
+}
+
+#custom-cava.mid {
+    color: @mauve;
+}
+
+#custom-cava.high {
+    color: @red;
+}

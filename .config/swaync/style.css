@@ -1,0 +1,55 @@
+/* Base */
+* {
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font", "Ubuntu Nerd Font", sans-serif;
+  font-size: 14px;
+}
+
+/* Popup notification container */
+.notification-background {
+  margin: 14px;
+}
+
+/* The notification “bubble” */
+.notification-background .notification {
+  background: rgba(17, 17, 27, 0.75);   /* sombre transparent */
+  border: 2px solid #b4befe;            /* lavender */
+  border-radius: 14px;
+
+  padding: 10px 12px;
+}
+
+/* Content spacing (évite les gros vides) */
+.notification .notification-content {
+  margin: 0;
+}
+
+/* Thumbnail / icon (hyprshot arrive ici) */
+.notification .image {
+  -gtk-icon-size: 96px;
+  min-width: 96px;
+  min-height: 96px;
+  margin-right: 10px;
+}
+
+/* Text */
+.notification-content .summary {
+  color: #cdd6f4;
+  font-weight: 800;
+}
+
+.notification-content .body {
+  color: #bac2de;
+}
+
+/* Close button (optionnel) */
+.notification-background .close-button {
+  background: rgba(180, 190, 254, 0.18);
+  color: #cdd6f4;
+  border-radius: 10px;
+  padding: 4px 8px;
+}
+.notification-background .close-button:hover {
+  background: rgba(180, 190, 254, 0.28);
+}
+
