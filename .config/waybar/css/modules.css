@@ -265,13 +265,16 @@
 }
 
 #custom-cava.low {
-    color: @blue;
+    color: @sapphire;
+    /* bleu profond, comme la pluie */
 }
 
 #custom-cava.mid {
-    color: @mauve;
+    color: @peach;
+    /* ambre chaud, comme les lumières du shop */
 }
 
 #custom-cava.high {
-    color: @red;
+    color: @yellow;
+    /* éclat doré, comme le néon au max */
 }
