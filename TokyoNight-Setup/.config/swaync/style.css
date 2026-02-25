@@ -1,0 +1,86 @@
+/* ──────────────── TOKYO NIGHT - POPUP NOTIFICATION ──────────────── */
+
+@define-color bg     rgba(26, 27, 38, 0.90);
+@define-color border rgba(122, 162, 247, 0.25);
+@define-color fg     #c0caf5;
+@define-color fg-alt #565f89;
+@define-color blue   #7aa2f7;
+@define-color purple #bb9af7;
+@define-color red    #f7768e;
+@define-color dark   #16161e;
+@define-color bg-alt #24283b;
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: 600;
+    font-size: 13px;
+}
+
+/* ──────────────── LA FENÊTRE POPUP (Conteneur extérieur) ──────────────── */
+.notification-window {
+    margin: 10px;                 /* Espace par rapport au bord de l'écran */
+    padding: 0;
+    background: transparent;      /* Le fond est géré par .notification */
+}
+
+/* ──────────────── LA CARTE DE NOTIFICATION ──────────────── */
+.notification {
+    background-color: @bg;
+    border: 1px solid @border;
+    border-radius: 14px;
+    padding: 12px;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+/* ──────────────── CONTENU ──────────────── */
+.notification-content {
+    background: transparent;
+    padding: 4px;
+}
+
+/* Nom de l'application */
+.app-name {
+    color: @purple;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* Heure */
+.time {
+    color: @fg-alt;
+    font-size: 11px;
+}
+
+/* Titre du message (Summary) */
+.summary {
+    color: @blue;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+/* Corps du message */
+.body {
+    color: @fg;
+    font-size: 12px;
+    font-weight: normal;
+    margin-top: 4px;
+}
+
+/* ──────────────── BOUTON FERMER ──────────────── */
+.close-button {
+    background: transparent;
+    color: @fg-alt;
+    border: none;
+    border-radius: 100%;
+    min-width: 22px;
+    min-height: 22px;
+    padding: 0;
+}
+
+.close-button:hover {
+    background-color: @red;
+    color: @dark;
+}
+

@@ -1,0 +1,42 @@
+# ~/.config/starship.toml
+# ──────────────── TOKYO NIGHT STARSHIP ────────────────
+
+# Ajouter une ligne vide avant chaque nouveau prompt pour respirer
+add_newline = true
+
+# Format global : 1ère ligne (infos) + 2ème ligne (curseur)
+format = """
+$directory$git_branch$git_status$cmd_duration
+$character"""
+
+# ──────────────── MODULES ────────────────
+
+[directory]
+# 0 = Ne JAMAIS tronquer le chemin (affiche tout sur la même ligne)
+truncation_length = 0
+# Style : Bleu Tokyo Night en gras
+style = "bold #7aa2f7"
+# Remplacer ~ par une jolie icône de maison
+format = "[$path]($style) "
+
+[git_branch]
+symbol = " "
+# Style : Violet Tokyo Night
+style = "italic #bb9af7"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "bold #f7768e" # Rouge si modif
+format = "([$all_status$ahead_behind]($style) )"
+
+[cmd_duration]
+min_time = 2000
+# Style : Jaune Tokyo Night
+style = "bold #e0af68"
+format = "took [$duration]($style)"
+
+[character]
+# Curseur de la 2ème ligne
+success_symbol = "[❯](bold #9ece6a)" # Vert Tokyo Night si la commande a réussi
+error_symbol = "[❯](bold #f7768e)"   # Rouge Tokyo Night si la commande a échoué
+

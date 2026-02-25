@@ -1,0 +1,108 @@
+/* ──────────────── TOKYO NIGHT ROFI (CORRIGÉ) ──────────────── */
+
+* {
+    /* Palette Tokyo Night */
+    bg:          #1a1b26;        /* Fond principal sombre */
+    bg-alt:      #24283b;        /* Fond légèrement plus clair */
+    fg:          #c0caf5;        /* Texte clair */
+    fg-alt:      #565f89;        /* Texte gris (placeholder) */
+    accent:      #7aa2f7;        /* Bleu accent */
+    
+    /* Variables de transparence */
+    background-color: transparent;
+    text-color:       @fg;
+    margin:           0;
+    padding:          0;
+    spacing:          0;
+}
+
+configuration {
+    font:            "JetBrainsMono Nerd Font 12";
+    show-icons:      true;
+    display-drun:    "Apps";
+    drun-display-format: "{name}";
+}
+
+window {
+    width:            45%;
+    transparency:     "real";
+    
+    /* C'est ICI qu'on force la transparence rgba */
+    background-color: rgba(26, 27, 38, 0.7); 
+    
+    border:           2px solid; /* "solid" est important */
+    border-color:     @accent;
+    border-radius:    16px;
+    padding:          20px;
+}
+
+mainbox {
+    spacing: 15px;
+    children: [ inputbar, listview ];
+}
+
+/* ──────────────── BARRE DE RECHERCHE ──────────────── */
+inputbar {
+    background-color: @bg-alt;
+    border-radius:    12px;
+    padding:          12px;
+    children:         [ prompt, entry ];
+}
+
+prompt {
+    background-color: transparent;
+    text-color:       @accent;
+    padding:          0 10px 0 0;
+    font:             "JetBrainsMono Nerd Font Bold 12";
+}
+
+entry {
+    background-color: transparent;
+    text-color:       @fg;
+    placeholder:      "Rechercher...";
+    placeholder-color: @fg-alt;
+}
+
+/* ──────────────── LISTE ──────────────── */
+listview {
+    lines:    8;
+    columns:  2;
+    spacing:  6px;
+    margin:   10px 0 0 0;
+}
+
+/* ──────────────── ÉLÉMENTS (C'est là qu'on corrige le blanc) ──────────────── */
+element {
+    padding:          10px;
+    border-radius:    10px;
+    background-color: transparent; /* Force la transparence par défaut */
+    text-color:       @fg;
+    spacing:          10px;
+}
+
+/* FORCE le fond transparent pour tous les états normaux/alternés */
+element normal.normal, element alternate.normal {
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+/* Élément SÉLECTIONNÉ : Fond bleu sombre Tokyo Night */
+element selected.normal {
+    background-color: #3d59a1; /* Bleu sombre Tokyo Night */
+    text-color:       #ffffff;
+    border:           1px solid;
+    border-color:     @accent;
+}
+
+/* Icônes */
+element-icon {
+    size: 24px;
+    background-color: transparent;
+}
+
+element-text {
+    vertical-align:   0.5;
+    background-color: transparent;
+    text-color:       inherit;
+}
+

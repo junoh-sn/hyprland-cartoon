@@ -1,0 +1,182 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 38,
+    "margin-top": 6,
+    "margin-left": 650,
+    "margin-right": 650,
+    "spacing": 0,
+    "modules-left": [
+        "hyprland/workspaces",
+        "custom/sep",
+        "custom/cava",
+        "custom/sep",
+    ],
+    "modules-center": [
+        "clock#time",
+        "custom/sep_clock",
+        "clock#date",
+        "custom/sep",
+        "mpris"
+    ],
+    "modules-right": [
+        "custom/gpu",
+        "cpu",
+        "memory",
+        "tray",
+        "custom/sep2",
+        "pulseaudio",
+        "network",
+        "custom/vpn",
+        "custom/sep3",
+        "custom/updates",
+        "custom/notification",
+        "custom/power"
+    ],
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "format": "{name}",
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
+    },
+    "custom/sep": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/sep2": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/sep3": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/sep_clock": {
+        "format": "•",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/cava": {
+        "exec": "~/.config/waybar/scripts/cava.sh",
+        "restart-interval": 1,
+        "tooltip": false,
+        "format": "{}",
+        "min-length": 20, /* Plus large */
+        "max-length": 24
+    },
+    "mpris": {
+        "format": "{player_icon} {title} — {artist}",
+        "format-paused": "{status_icon} <i>{title}</i>",
+        "player-icons": {
+            "default": "󰎆",
+            "spotify": "",
+            "firefox": ""
+        },
+        "status-icons": {
+            "paused": ""
+        },
+        "max-length": 30,
+        "interval": 1
+    },
+    "clock#time": {
+        "format": "{:%H:%M}",
+        "tooltip": false
+    },
+    "clock#date": {
+        "format": "{:L%a %d %b}",
+        "tooltip-format": "<tt>{calendar}</tt>"
+    },
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "format": "󰍹 {}%",
+        "interval": 5,
+        "tooltip": false,
+        "on-click": "kitty -e nvtop"
+    },
+    "cpu": {
+        "interval": 2,
+        "format": "󰻠 {usage}%",
+        "tooltip": false,
+        "on-click": "kitty -e htop"
+    },
+    "memory": {
+        "interval": 5,
+        "format": "󰍛 {percentage}%",
+        "tooltip-format": "{used:0.1f}G / {total:0.1f}G",
+        "on-click": "kitty -e btop"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
+        },
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+    "network": {
+        "format-wifi": "󰤨 {signalStrength}%",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤭",
+        "tooltip-format": "{essid}"
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{} {icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "wlogout --protocol layer-shell"
+    },
+    "custom/updates": {
+        "exec": "~/.config/waybar/scripts/updates.sh",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 3600, // 1h
+        "signal": 8,
+        "tooltip": true
+    },
+    "custom/vpn": {
+        "exec": "~/.config/waybar/scripts/vpn_status.sh",
+        "return-type": "json",
+        "interval": 5,
+        "format": "{}",
+        "tooltip": true
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10,
+        "format": "[ {icon} ]"
+    }
+}

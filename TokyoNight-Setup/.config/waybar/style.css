@@ -1,0 +1,256 @@
+/* ──────────────── Tokyo Night ──────────────── */
+@define-color bg rgba(22, 22, 30, 0.95);
+@define-color bg_hl rgba(41, 46, 66, 0.85);
+@define-color border rgba(122, 162, 247, 0.20);
+@define-color fg #c0caf5;
+@define-color sub #565f89;
+@define-color blue #7aa2f7;
+@define-color cyan #7dcfff;
+@define-color purple #bb9af7;
+@define-color green #9ece6a;
+@define-color yellow #e0af68;
+@define-color orange #ff9e64;
+@define-color red #f7768e;
+@define-color bg_dark #16161e;
+
+/* ──────────────── Reset ──────────────── */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    font-weight: 700;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/* ──────────────── Barre principale ──────────────── */
+window#waybar {
+    background-color: @bg;
+    color: @fg;
+    border-radius: 18px;
+    border: 1px solid @border;
+    padding: 0 6px;
+}
+
+/* ──────────────── Séparateurs ──────────────── */
+#custom-sep,
+#custom-sep2,
+#custom-sep3 {
+    color: @sub;
+    font-size: 11px;
+    padding: 0 2px;
+    opacity: 0.5;
+}
+
+#custom-sep_clock {
+    color: @sub;
+    font-size: 14px;
+    padding: 0 4px;
+}
+
+/* ──────────────── Workspaces (Ton style Pilule) ──────────────── */
+#workspaces {
+    background-color: alpha(@bg, 0.10);
+    border-radius: 999px;
+    padding: 0 6px;
+    margin: 0 10px;
+}
+
+#workspaces button {
+    min-width: 14px;
+    /* ← Était à 22px */
+    padding: 0 4px;
+    /* ← Était à 0 8px */
+    margin: 0 1px;
+    /* ← Était à 0 3px */
+    font-size: 13px;
+    font-weight: 800;
+    color: alpha(@fg, 0.35);
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    transition: all 0.15s ease;
+}
+
+/* Vides : plus “éteints” */
+#workspaces button.empty {
+    color: alpha(@fg, 0.18);
+}
+
+/* Occupés (non vides) mais pas actifs */
+#workspaces button:not(.empty):not(.active) {
+    color: alpha(@fg, 0.65);
+}
+
+
+#workspaces button:hover:not(.active) {
+    background-color: alpha(@bg_hl, 0.55);
+    color: alpha(@fg, 0.95);
+}
+
+#workspaces button.active {
+    padding: 0 10px;
+    /* ← Réduit de 15px à 10px */
+    margin: 5px 2px;
+    /* ← Marge réduite */
+    min-width: 24px;
+    /* ← Réduit de 30px à 24px */
+    font-size: 12px;
+    background: linear-gradient(90deg, alpha(@blue, 0.85), alpha(@purple, 0.85));
+    color: @bg_dark;
+}
+
+/* ──────────────── Cava ──────────────── */
+#custom-cava {
+    color: @purple;
+    padding: 0 10px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    opacity: 0.85;
+    text-shadow: 0 0 5px rgba(187, 154, 247, 0.4);
+}
+
+/* ──────────────── MPRIS (Musique) ──────────────── */
+#mpris {
+    color: @fg;
+    padding: 0 10px;
+    font-weight: 600;
+}
+
+#mpris.paused {
+    color: @sub;
+    font-style: italic;
+}
+
+/* ──────────────── Horloge Scindée ──────────────── */
+#clock.time {
+    color: @orange;
+    font-size: 14px;
+    font-weight: 800;
+    padding-left: 10px;
+}
+
+#clock.date {
+    color: @sub;
+    font-size: 12px;
+    font-weight: 600;
+    padding-right: 10px;
+}
+
+/* ──────────────── Modules Droite ──────────────── */
+#custom-gpu {
+    color: @green;
+    padding: 0 8px;
+}
+
+#cpu {
+    color: @cyan;
+    padding: 0 8px;
+}
+
+#memory {
+    color: @blue;
+    padding: 0 8px;
+}
+
+#pulseaudio {
+    color: @green;
+    padding: 0 8px;
+}
+
+#network {
+    color: @yellow;
+    padding: 0 8px;
+}
+
+#custom-notification {
+    color: @fg;
+    padding: 0 12px;
+    font-size: 14px;
+}
+
+#custom-power {
+    color: @red;
+    font-size: 15px;
+    padding: 0 12px 0 8px;
+    opacity: 0.8;
+}
+
+#custom-power:hover {
+    color: @bg_dark;
+    background-color: @red;
+    border-radius: 12px;
+    opacity: 1;
+}
+
+/* ──────────────── Tooltip (Tokyo Night) ──────────────── */
+tooltip {
+    background-color: @bg_dark;
+    /* Fond très sombre #16161e */
+    border: 1px solid @border;
+    /* Bordure bleue très légère */
+    border-radius: 12px;
+    /* Coins bien arrondis */
+    padding: 10px;
+    /* Espace intérieur */
+}
+
+tooltip label {
+    color: @fg;
+    /* Texte principal clair #c0caf5 */
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Certains tooltips (comme l'horloge) ont des sous-éléments */
+tooltip label sub {
+    color: @sub;
+}
+
+/* ──────────────── VPN ──────────────── */
+#custom-vpn {
+    padding: 0 8px;
+    /* Collé à la gauche (network), un peu d'espace à droite */
+    font-size: 14px;
+}
+
+#custom-vpn.connected {
+    color: @green;
+    text-shadow: 0 0 5px rgba(158, 206, 106, 0.4);
+    /* Petit glow vert Tokyo Night */
+}
+
+#custom-vpn.disconnected {
+    color: @sub;
+    /* Gris discret Tokyo Night */
+    opacity: 0.6;
+}
+
+/* ──────────────── Tray ──────────────── */
+#tray {
+    padding: 0 12px;
+    margin: 0 10px;
+    border-left: 1px solid alpha(@surface2, 0.55);
+    border-right: 1px solid alpha(@surface2, 0.55);
+    border-radius: 8px;
+}
+
+#custom-updates {
+    color: @purple;
+    padding: 0 10px;
+}
+
+tooltip {
+    background-color: @bg_dark;
+    border: 1px solid @border;
+    border-radius: 12px;
+}
+
+tooltip label {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    color: @fg;
+}
