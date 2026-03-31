@@ -1,0 +1,100 @@
+/* Tokyo Night x Waybar – version capsule */
+
+* {
+    font: "JetBrainsMono Nerd Font 11";
+
+    bg-main:      rgba ( 10, 11, 20, 95 % );
+    bg-alt:       rgba ( 22, 24, 38, 98 % );
+    bg-row:       rgba ( 26, 27, 40, 100 % );
+    border-cl:    rgba ( 122, 162, 247, 100 % );
+    text-norm:    rgba ( 192, 202, 245, 100 % );
+    text-dark:    rgba ( 24, 24, 32, 100 % );
+    text-muted:   rgba ( 115, 121, 148, 100 % );
+    accent-blue:  rgba ( 122, 162, 247, 100 % );
+    accent-mauve: rgba ( 187, 154, 247, 100 % );
+
+    background-color: transparent;
+    text-color: @text-norm;
+}
+
+/* FENÊTRE PRINCIPALE */
+window {
+    background-color: @bg-main;
+    border: 1px;
+    border-color: @border-cl;
+    border-radius: 24px;
+    padding: 20px;
+}
+
+/* LAYOUT GÉNÉRAL */
+mainbox {
+    spacing: 12px;
+}
+
+inputbar {
+    border-radius: 999px;
+    padding: 8px 14px;
+    background-color: @bg-alt;
+    text-color: @text-norm;
+}
+
+prompt {
+    text-color: @accent-blue;
+    padding: 0 10px 0 6px;
+}
+
+entry {
+    expand: true;
+}
+
+/* LISTE D’ENTRÉES */
+listview {
+    spacing: 8px;
+    scrollbar: false;
+    fixed-height: false;
+}
+
+element {
+    border-radius: 14px;
+    padding: 7px 12px;
+    background-color: @bg-row;
+    text-color: @text-norm;
+}
+
+element-icon {
+    size: 18;
+    padding: 0 10px 0 6px;
+}
+
+element-text {
+    highlight: underline;
+}
+
+/* ÉLÉMENT SÉLECTIONNÉ : bandeau mauve/bleu */
+element selected {
+    background-color: @accent-blue;
+    text-color: @text-dark;
+    border: 0;
+}
+
+element selected element-icon,
+element selected element-text {
+    text-color: @text-dark;
+}
+
+/* MODES (drun/run/ssh) en haut */
+mode-switcher {
+    spacing: 6px;
+}
+
+button {
+    border-radius: 999px;
+    padding: 4px 12px;
+    background-color: @bg-alt;
+    text-color: @text-muted;
+}
+
+button selected {
+    background-color: @accent-mauve;
+    text-color: @text-dark;
+}

@@ -1,0 +1,122 @@
+/* ----- Thème rofi-wayland moderne, sombre, arrondi ----- */
+
+* {
+    /* Palette Catppuccin Mocha */
+    bg0:          #1e1e2eff;  /* base */
+    bg1:          #181825ff;  /* mantle */
+    bg2:          #313244ff;  /* surface0 */
+    bg3:          #45475aff;  /* surface1 */
+
+    fg0:          #cdd6f4ff;  /* text */
+    fg1:          #bac2deff;  /* subtext1 */
+    fg2:          #a6adc8ff;  /* subtext0 */
+    fg3:          #6c7086ff;  /* overlay1 */
+
+    accent:       #cba6f7ff;  /* mauve */
+    accent-soft:  #89b4faff;  /* blue */
+    urgent:       #f38ba8ff;  /* red */
+
+    font: "JetBrains Mono 10";
+
+    background-color: transparent;
+    text-color:       @fg0;
+
+    margin:  0px;
+    padding: 0px;
+    spacing: 0px;
+}
+window {
+    location: center;
+    width: 900;
+    border-radius: 22px;
+
+    background-color: @bg0;
+    border: 1px;
+    border-color: @bg2;
+}
+
+mainbox {
+    padding: 18px 20px 20px 20px;
+    spacing: 12px;
+}
+
+/* Barre du haut : modes + recherche */
+inputbar {
+    background-color: @bg1;
+    border-radius: 16px;
+    border: 1px;
+    border-color: @bg2;
+
+    padding: 8px 12px;
+    spacing: 10px;
+
+    children: [ mode-switcher, entry ];
+}
+
+mode-switcher {
+    spacing: 6px;
+}
+
+button {
+    padding: 4px 10px;
+    border-radius: 12px;
+    background-color: @bg2;
+    text-color: @fg2;
+}
+
+button selected {
+    background-color: @accent-soft;  /* ici c’était bleu → on garde ton accent */
+    text-color: @bg0;
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: @fg3;
+}
+
+/* Zone de liste : 2 colonnes, gros blocs */
+listview {
+    columns: 2;
+    lines: 6;
+    fixed-height: false;
+
+    margin: 14px 0 0;
+    spacing: 12px;
+
+    background-color: transparent;
+}
+
+/* Chaque élément = gros bloc arrondi */
+element {
+    padding: 12px 18px;
+    spacing: 10px;
+    border-radius: 22px;
+}
+
+/* Normal */
+element normal normal {
+    background-color: @bg2;
+    text-color: @fg1;
+}
+
+/* Survol */
+element normal active {
+    background-color: @bg3;
+    text-color: @fg0;
+}
+
+/* Sélection (ligne active) → on garde ta couleur d’accent */
+element selected normal,
+element selected active {
+    background-color: @accent;
+    text-color: @bg0;
+}
+
+element-icon {
+    size: 1.2em;
+    vertical-align: 0.5;
+}
+
+element-text {
+    text-color: inherit;
+}

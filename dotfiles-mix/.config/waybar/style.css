@@ -1,0 +1,483 @@
+/* ───────────────── THEME TOKYO NIGHT ───────────────── */
+
+@define-color bg rgba(22, 22, 30, 0.95);
+@define-color bg_hl rgba(41, 46, 66, 0.85);
+@define-color border rgba(122, 162, 247, 0.20);
+@define-color fg #c0caf5;
+@define-color sub #565f89;
+@define-color blue #7aa2f7;
+@define-color cyan #7dcfff;
+@define-color purple #bb9af7;
+@define-color green #9ece6a;
+@define-color yellow #e0af68;
+@define-color orange #ff9e64;
+@define-color red #f7768e;
+@define-color bg_dark #16161e;
+
+/* Catppuccin accents pour la météo */
+@define-color text #cdd6f4;
+@define-color crust #11111b;
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color surface2 #585b70;
+@define-color overlay0 #6c7086;
+@define-color overlay1 #7f849c;
+@define-color base #1e1e2e;
+@define-color sky #89dceb;
+@define-color sapphire #74c7ec;
+@define-color mauve #cba6f7;
+@define-color lavender #b4befe;
+@define-color peach #fab387;
+
+/* ───────────────── RESET GLOBAL ───────────────── */
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    font-weight: 700;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/* ───────────────── BARRE PRINCIPALE ───────────────── */
+
+window#waybar {
+    background-color: rgba(22, 22, 30, 0.92);
+    color: @fg;
+    border-radius: 18px;
+    border: 1px solid @border;
+    padding: 0 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+}
+
+/* ───────────────── SÉPARATEURS ───────────────── */
+
+#custom-sep,
+#custom-sep2,
+#custom-sep3,
+#custom-sep4 {
+    color: @sub;
+    font-size: 11px;
+    padding: 0 2px;
+    opacity: 0.5;
+}
+
+/* ───────────────── WORKSPACES (PILULES) ───────────────── */
+
+#workspaces {
+    background-color: alpha(@bg, 0.10);
+    border-radius: 999px;
+    padding: 0 6px;
+    margin: 0 10px;
+}
+
+#workspaces button {
+    min-width: 14px;
+    padding: 0 4px;
+    margin: 0 1px;
+    font-size: 13px;
+    font-weight: 800;
+    color: alpha(@fg, 0.35);
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    transition: all 0.15s ease;
+}
+
+#workspaces button.empty {
+    color: alpha(@fg, 0.18);
+}
+
+#workspaces button:not(.empty):not(.active) {
+    color: alpha(@fg, 0.65);
+}
+
+#workspaces button:hover:not(.active) {
+    background-color: alpha(@bg_hl, 0.6);
+    color: alpha(@fg, 0.98);
+    box-shadow: 0 0 6px rgba(122, 162, 247, 0.5);
+}
+
+#workspaces button.active {
+    padding: 0 10px;
+    margin: 5px 2px;
+    min-width: 24px;
+    font-size: 12px;
+    background: linear-gradient(90deg,
+            alpha(@blue, 0.90),
+            alpha(@purple, 0.90));
+    color: @bg_dark;
+    box-shadow: 0 0 7px rgba(122, 162, 247, 0.70);
+    /* glow cohérent */
+    border-radius: 999px;
+    transition:
+        background 0.15s ease-out,
+        box-shadow 0.15s ease-out,
+        color 0.15s ease-out;
+}
+
+/* ───────────────── CAVA ───────────────── */
+
+#custom-cava {
+    color: @purple;
+    padding: 0 10px;
+    margin: 4px 2px;
+    font-size: 12px;
+    letter-spacing: 1.4px;
+    opacity: 0.85;
+    text-shadow: 0 0 5px rgba(187, 154, 247, 0.4);
+}
+
+/* ───────────────── MPRIS ───────────────── */
+
+#mpris {
+    color: @fg;
+    padding: 0 8px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+#mpris.paused {
+    color: @sub;
+    font-style: italic;
+}
+
+/* ───────────────── MODULES DROITE ───────────────── */
+
+#custom-gpu {
+    color: @green;
+    padding: 0 6px;
+}
+
+#cpu {
+    color: @cyan;
+    padding: 0 6px;
+}
+
+#memory {
+    color: @blue;
+    padding: 0 6px;
+}
+
+#pulseaudio {
+    color: @yellow;
+    padding: 0 6px;
+}
+
+#pulseaudio.muted {
+    color: @sub;
+    opacity: 0.7;
+}
+
+#network {
+    color: @green;
+    padding: 0 6px;
+}
+
+#bluetooth {
+    color: #74c7ec;
+    padding: 0 6px;
+}
+
+#custom-vpn {
+    padding: 0 6px;
+    font-size: 14px;
+}
+
+#custom-vpn.connected {
+    color: @green;
+    text-shadow: 0 0 5px rgba(158, 206, 106, 0.4);
+}
+
+#custom-vpn.disconnected {
+    color: @sub;
+    opacity: 0.6;
+}
+
+#custom-notification {
+    color: @fg;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+#custom-updates {
+    color: @purple;
+    padding: 0 6px;
+    padding-right: 12px;
+}
+
+#tray {
+    padding: 0 10px;
+    margin: 0 8px;
+    border-left: 1px solid alpha(@surface2, 0.55);
+    border-right: 1px solid alpha(@surface2, 0.55);
+    border-radius: 8px;
+}
+
+/* HORLOGE, décoincée du bord droit */
+#clock {
+    color: @orange;
+    font-weight: 900;
+    padding-left: 6px;
+    padding-right: 10px;
+}
+
+/* ───────── Alignement vertical homogène ───────── */
+
+#custom-arch,
+#custom-weather,
+#custom-cava,
+#mpris,
+#workspaces,
+#custom-gpu,
+#cpu,
+#memory,
+#tray,
+#pulseaudio,
+#bluetooth,
+#network,
+#custom-vpn,
+#custom-notification,
+#custom-updates,
+#clock {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+/* ───────── Effet hover subtil sur modules interactifs ───────── */
+/* Effet hover + glow compatible GTK */
+#custom-gpu:hover,
+#cpu:hover,
+#memory:hover,
+#pulseaudio:hover,
+#network:hover,
+#bluetooth:hover,
+#custom-vpn:hover,
+#custom-notification:hover,
+#clock:hover {
+    background-color: alpha(@bg_hl, 0.70);
+    color: alpha(@fg, 0.98);
+    box-shadow: 0 0 8px rgba(122, 162, 247, 0.75);
+    /* glow bleu */
+    border-radius: 999px;
+    transition:
+        background-color 0.12s ease-out,
+        color 0.12s ease-out,
+        box-shadow 0.12s ease-out;
+}
+
+/* ───────────────── TOOLTIP ───────────────── */
+
+tooltip {
+    background-color: @bg_dark;
+    border: 1px solid @border;
+    border-radius: 12px;
+}
+
+tooltip label {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    color: @fg;
+}
+
+/* ───────────────── MÉTÉO (CAPSULE TOKYO NIGHT) ───────────────── */
+
+#custom-weather {
+    background: linear-gradient(135deg,
+            alpha(@bg_hl, 0.90) 0%,
+            alpha(@bg, 0.95) 60%,
+            alpha(@bg_hl, 0.90) 100%);
+    background-size: 220% 220%;
+    border-radius: 999px;
+    padding: 0 10px;
+    margin: 3px 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    border: 1px solid alpha(@border, 0.7);
+    color: @fg;
+    text-shadow: 0 1px 2px alpha(@bg_dark, 0.8);
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    transition:
+        background-position 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease,
+        color 0.2s ease;
+}
+
+#custom-weather label {
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    font-weight: 600;
+}
+
+#custom-weather:hover {
+    background-position: 100% 50%;
+    box-shadow: 0 4px 14px alpha(@bg_dark, 0.9);
+}
+
+/* Conditions météo : teinte légère au lieu de gros blocks Catppuccin */
+
+#custom-weather.sunny,
+#custom-weather.clear {
+    border-color: alpha(@yellow, 0.85);
+    color: @yellow;
+}
+
+#custom-weather.rain,
+#custom-weather.sleet,
+#custom-weather.thunder {
+    border-color: alpha(@blue, 0.85);
+    color: @blue;
+}
+
+#custom-weather.cloudy,
+#custom-weather.overcast,
+#custom-weather.mist,
+#custom-weather.fog {
+    border-color: alpha(@surface2, 0.9);
+    color: @sub;
+}
+
+#custom-weather.snow {
+    border-color: alpha(@lavender, 0.85);
+    color: @lavender;
+}
+
+/* Température : on garde juste le contour coloré */
+
+#custom-weather.cold {
+    box-shadow: 0 0 5px alpha(@sky, 0.40);
+}
+
+#custom-weather.mild {
+    box-shadow: 0 0 4px alpha(@green, 0.35);
+}
+
+#custom-weather.hot {
+    box-shadow: 0 0 6px alpha(@peach, 0.45);
+}
+
+/* ───────────────── LOGO ARCH ───────────────── */
+
+#custom-arch {
+    color: @purple;
+    font-weight: 900;
+    padding-left: 19px;
+    padding-right: 4px;
+    margin-right: 8px;
+}
+
+#custom-arch:hover {
+    color: @lavender;
+}
+
+/* ───────── Capsule PERF (GPU / CPU / RAM) ───────── */
+
+#custom-gpu,
+#cpu,
+#memory {
+    background-color: alpha(@bg_hl, 0.55);
+    /* plus clair */
+    border-radius: 999px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+/* Coller les 3 modules entre eux visuellement */
+#custom-gpu {
+    margin-right: 0;
+}
+
+#cpu {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#memory {
+    margin-left: 0;
+}
+
+/* Petit contour pour bien détacher la capsule */
+#custom-gpu,
+#cpu,
+#memory {
+    border: 1px solid alpha(@border, 0.5);
+}
+
+/* ───────── États réseau ───────── */
+
+#network {
+    transition: color 0.15s ease-out, opacity 0.15s ease-out;
+}
+
+#network.disconnected {
+    color: @red;
+    opacity: 0.85;
+}
+
+#network.wifi,
+#network.ethernet {
+    color: @green;
+    opacity: 1.0;
+}
+
+/* ───────── États VPN ───────── */
+
+#custom-vpn {
+    transition: color 0.15s ease-out, text-shadow 0.15s ease-out, opacity 0.15s ease-out;
+}
+
+#custom-vpn.connected {
+    color: @green;
+    text-shadow: 0 0 6px rgba(158, 206, 106, 0.65);
+}
+
+#custom-vpn.disconnected {
+    color: @sub;
+    opacity: 0.7;
+    text-shadow: none;
+}
+
+/* ───────── États updates ───────── */
+
+#custom-updates {
+    transition: color 0.15s ease-out, text-shadow 0.15s ease-out, opacity 0.15s ease-out;
+}
+
+#custom-updates.has-updates {
+    color: @purple;
+    text-shadow: 0 0 8px rgba(187, 154, 247, 0.8);
+    opacity: 1.0;
+}
+
+#custom-updates.updated {
+    color: @sub;
+    opacity: 0.7;
+    text-shadow: none;
+}
+
+/* ───────── Horloge day / night ───────── */
+
+#custom-clock {
+    font-weight: 900;
+    padding-left: 6px;
+    padding-right: 10px;
+    transition: color 0.2s ease-out, text-shadow 0.2s ease-out;
+}
+
+/* Jour : orange chaud */
+#custom-clock.day {
+    color: @orange;
+    text-shadow: 0 0 6px rgba(250, 179, 135, 0.6);
+}
+
+/* Nuit : mauve / bleu */
+#custom-clock.night {
+    color: @lavender;
+    text-shadow: 0 0 8px rgba(180, 190, 254, 0.8);
+}
