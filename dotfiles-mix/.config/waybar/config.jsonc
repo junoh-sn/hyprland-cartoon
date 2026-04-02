@@ -142,10 +142,10 @@
         "tooltip": true,
         "tooltip-format": "Volume : {volume}%"
     },
-    "custom/clock": {
-        "exec": "~/.config/waybar/scripts/clock_status.sh",
-        "return-type": "json",
-        "interval": 30,
+    "clock": {
+        "locale": "fr_FR.utf8",
+        "format": "{:%H:%M}",
+        "format-alt": "{:L%A %d %B %Y · %H:%M}",
         "tooltip-format": "<big>{:L%Y %B}</big>\\n<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "month",

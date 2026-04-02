@@ -45,12 +45,12 @@
 /* ───────────────── BARRE PRINCIPALE ───────────────── */
 
 window#waybar {
-    background-color: rgba(22, 22, 30, 0.92);
+    background-color: rgba(22, 22, 30, 0.75);
     color: @fg;
     border-radius: 18px;
     border: 1px solid @border;
     padding: 0 6px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
 
 /* ───────────────── SÉPARATEURS ───────────────── */
@@ -75,13 +75,13 @@ window#waybar {
 }
 
 #workspaces button {
-    min-width: 14px;
-    padding: 0 4px;
-    margin: 0 1px;
+    min-width: 24px;
+    padding: 2px 4px;
+    margin: 2px 2px;
     font-size: 13px;
     font-weight: 800;
-    color: alpha(@fg, 0.35);
-    background: transparent;
+    color: alpha(@fg, 0.95);
+    background-color: #313244;
     border: none;
     border-radius: 999px;
     transition: all 0.15s ease;
@@ -93,6 +93,7 @@ window#waybar {
 
 #workspaces button:not(.empty):not(.active) {
     color: alpha(@fg, 0.65);
+    background-color: #585b70;
 }
 
 #workspaces button:hover:not(.active) {
@@ -102,8 +103,8 @@ window#waybar {
 }
 
 #workspaces button.active {
-    padding: 0 10px;
-    margin: 5px 2px;
+    padding: 0 15px;
+    margin: 3px 2px;
     min-width: 24px;
     font-size: 12px;
     background: linear-gradient(90deg,
@@ -111,7 +112,6 @@ window#waybar {
             alpha(@purple, 0.90));
     color: @bg_dark;
     box-shadow: 0 0 7px rgba(122, 162, 247, 0.70);
-    /* glow cohérent */
     border-radius: 999px;
     transition:
         background 0.15s ease-out,
@@ -145,7 +145,7 @@ window#waybar {
     font-style: italic;
 }
 
-/* ───────────────── MODULES DROITE ───────────────── */
+/* ───────────────── MODULES DROITE (COULEURS DE BASE) ───────────────── */
 
 #custom-gpu {
     color: @green;
@@ -153,12 +153,14 @@ window#waybar {
 }
 
 #cpu {
-    color: @cyan;
+    color: @mauve;
+    /* violet doux */
     padding: 0 6px;
 }
 
 #memory {
-    color: @blue;
+    color: @cyan;
+    /* bleu/cyan pastel */
     padding: 0 6px;
 }
 
@@ -173,7 +175,8 @@ window#waybar {
 }
 
 #network {
-    color: @green;
+    color: @sky;
+    /* bleu ciel catppuccin */
     padding: 0 6px;
 }
 
@@ -217,14 +220,6 @@ window#waybar {
     border-radius: 8px;
 }
 
-/* HORLOGE, décoincée du bord droit */
-#clock {
-    color: @orange;
-    font-weight: 900;
-    padding-left: 6px;
-    padding-right: 10px;
-}
-
 /* ───────── Alignement vertical homogène ───────── */
 
 #custom-arch,
@@ -248,7 +243,7 @@ window#waybar {
 }
 
 /* ───────── Effet hover subtil sur modules interactifs ───────── */
-/* Effet hover + glow compatible GTK */
+
 #custom-gpu:hover,
 #cpu:hover,
 #memory:hover,
@@ -261,7 +256,6 @@ window#waybar {
     background-color: alpha(@bg_hl, 0.70);
     color: alpha(@fg, 0.98);
     box-shadow: 0 0 8px rgba(122, 162, 247, 0.75);
-    /* glow bleu */
     border-radius: 999px;
     transition:
         background-color 0.12s ease-out,
@@ -318,7 +312,7 @@ tooltip label {
     box-shadow: 0 4px 14px alpha(@bg_dark, 0.9);
 }
 
-/* Conditions météo : teinte légère au lieu de gros blocks Catppuccin */
+/* Conditions météo */
 
 #custom-weather.sunny,
 #custom-weather.clear {
@@ -346,7 +340,7 @@ tooltip label {
     color: @lavender;
 }
 
-/* Température : on garde juste le contour coloré */
+/* Température : contour coloré */
 
 #custom-weather.cold {
     box-shadow: 0 0 5px alpha(@sky, 0.40);
@@ -380,15 +374,16 @@ tooltip label {
 #cpu,
 #memory {
     background-color: alpha(@bg_hl, 0.55);
-    /* plus clair */
     border-radius: 999px;
     padding-left: 10px;
     padding-right: 10px;
     margin-top: 3px;
     margin-bottom: 3px;
+    border: 1px solid alpha(@border, 0.5);
 }
 
 /* Coller les 3 modules entre eux visuellement */
+
 #custom-gpu {
     margin-right: 0;
 }
@@ -400,13 +395,6 @@ tooltip label {
 
 #memory {
     margin-left: 0;
-}
-
-/* Petit contour pour bien détacher la capsule */
-#custom-gpu,
-#cpu,
-#memory {
-    border: 1px solid alpha(@border, 0.5);
 }
 
 /* ───────── États réseau ───────── */
@@ -461,23 +449,13 @@ tooltip label {
     text-shadow: none;
 }
 
-/* ───────── Horloge day / night ───────── */
+/* ========================
+   Waybar – module clock
+   ======================== */
 
-#custom-clock {
-    font-weight: 900;
-    padding-left: 6px;
-    padding-right: 10px;
-    transition: color 0.2s ease-out, text-shadow 0.2s ease-out;
-}
-
-/* Jour : orange chaud */
-#custom-clock.day {
+#clock,
+.clock {
+    padding-right: 12px;
     color: @orange;
-    text-shadow: 0 0 6px rgba(250, 179, 135, 0.6);
-}
-
-/* Nuit : mauve / bleu */
-#custom-clock.night {
-    color: @lavender;
-    text-shadow: 0 0 8px rgba(180, 190, 254, 0.8);
+    font-weight: 900;
 }
