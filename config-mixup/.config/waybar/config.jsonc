@@ -1,0 +1,192 @@
+{
+    // ───────── BARRE GÉNÉRALE ─────────
+    "layer": "top",
+    "position": "top",
+    "height": 38,
+    "margin-top": 6,
+    "margin-left": 650,
+    "margin-right": 650,
+    "spacing": 4,
+    // ───────── SECTIONS ─────────
+    "modules-left": [
+        "custom/arch",
+        "custom/weather",
+        "custom/sep",
+        "custom/cava",
+        "custom/sep",
+        "mpris"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "custom/gpu",
+        "cpu",
+        "memory",
+        "pulseaudio",
+        "bluetooth",
+        "network",
+        "custom/vpn",
+        "custom/notification",
+        "custom/updates",
+        "tray",
+        "clock"
+    ],
+    // ───────── MODULES ─────────
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "format": "{name}",
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
+    },
+    "custom/sep": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/cava": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/cava.sh",
+        "return-type": "json",
+        "tooltip": false
+    },
+    "mpris": {
+        "format": "{player_icon} {title} — {artist}",
+        "format-paused": "{status_icon} <i>{title}</i>",
+        "player-icons": {
+            "default": "󰎆",
+            "spotify": "",
+            "firefox": ""
+        },
+        "status-icons": {
+            "paused": ""
+        },
+        "max-length": 28,
+        "interval": 1,
+        "tooltip": true,
+        "tooltip-format": "{player} — {title}\n{artist}"
+    },
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "format": "󰍹 {}%",
+        "interval": 5,
+        "tooltip": true,
+        "tooltip-format": "GPU : {}%",
+        "on-click": "kitty -e nvtop"
+    },
+    "cpu": {
+        "interval": 2,
+        "format": "  {usage}%",
+        "tooltip": true,
+        "tooltip-format": "CPU : {usage}%",
+        "on-click": "kitty -e htop"
+    },
+    "memory": {
+        "interval": 5,
+        "format": "  {percentage}%",
+        "tooltip": true,
+        "tooltip-format": "RAM : {used:0.1f}G / {total:0.1f}G ({percentage}%)",
+        "on-click": "kitty -e btop"
+    },
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "󰂲",
+        "tooltip": true,
+        "tooltip-format": "Bluetooth : {status}",
+        "on-click": "blueman-manager"
+    },
+    "network": {
+        "format-wifi": "󰤨 {signalStrength}%",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤭",
+        "tooltip": true,
+        "tooltip-format": "{ifname} : {ipaddr}\nSSID : {essid}"
+    },
+    "custom/vpn": {
+        "exec": "~/.config/waybar/scripts/vpn_status.sh",
+        "return-type": "json",
+        "interval": 5,
+        "format": "{}",
+        "tooltip": true
+    },
+    "custom/updates": {
+        "exec": "~/.config/waybar/scripts/updates.sh",
+        "return-type": "json",
+        "format": "{} ",
+        "interval": 600,
+        "signal": 8
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 6
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "default": [
+                "󰟎",
+                "󰋍",
+                ""
+            ]
+        },
+        "on-click": "pavucontrol",
+        "tooltip": true,
+        "tooltip-format": "Volume : {volume}%"
+    },
+    "clock": {
+        "locale": "fr_FR.utf8",
+        "format": "{:%H:%M}",
+        "format-alt": "{:L%A %d %B %Y · %H:%M}",
+        "tooltip-format": "<big>{:L%Y %B}</big>\\n<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "right",
+            "format": {
+                "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+            }
+        },
+        "on-click-right": "gsimplecal"
+    },
+    "custom/weather": {
+        "format": "{}",
+        "return-type": "json",
+        "exec": "~/.config/waybar/scripts/weather.py",
+        "interval": 900,
+        "tooltip": true,
+        "on-click": "~/.config/waybar/scripts/weather_kitty.sh",
+        "on-click-right": "xdg-open https://wttr.in/Paris"
+    },
+    "custom/arch": {
+        "format": "<span size='xx-large'></span>",
+        "tooltip": false,
+        "on-click": "rofi -show drun -theme ~/.config/rofi/themes/ghost-dark.rasi"
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{} {icon}",
+        "format-icons": {
+            "notification": "󱅫<span foreground='#f7768e'><sup></sup></span>",
+            "none": "󰂚",
+            "dnd-notification": "󰂛<span foreground='#f7768e'><sup></sup></span>",
+            "dnd-none": "󰂛",
+            "inhibited-notification": "󰂚<span foreground='#f7768e'><sup></sup></span>",
+            "inhibited-none": "󰂚",
+            "dnd-inhibited-notification": "󰂛<span foreground='#f7768e'><sup></sup></span>",
+            "dnd-inhibited-none": "󰂛"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.1 && swaync-client -t -sw",
+        "on-click-right": "sleep 0.1 && swaync-client -d -sw",
+        "escape": true
+    }
+}

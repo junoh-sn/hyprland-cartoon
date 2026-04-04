@@ -1,0 +1,120 @@
+/* ───────────────── THEME TOKYO NIGHT / MOCHA ───────────────── */
+@define-color bg       rgba(22, 22, 30, 0.85); /* Fond transparent */
+@define-color bg_hl    rgba(41, 46, 66, 0.95); /* Fond au survol */
+@define-color border   rgba(122, 162, 247, 0.40); /* Bordures bleutées */
+@define-color fg       #c0caf5;
+@define-color sub      #565f89;
+@define-color blue     #7aa2f7;
+@define-color purple   #bb9af7;
+@define-color red      #f7768e;
+@define-color bg_dark  #16161e;
+@define-color surface0 #313244;
+
+/* ───────────────── RESET & BASE ───────────────── */
+* {
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    font-weight: bold;
+}
+
+/* ───────────────── PANNEAU PRINCIPAL ───────────────── */
+.control-center {
+    background-color: @bg;
+    border: 2px solid @border;
+    border-radius: 18px;
+    padding: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.control-center-list {
+    background: transparent;
+}
+
+/* En-tête (Ne pas déranger, etc.) */
+.widget-title {
+    color: @blue;
+    font-size: 18px;
+    margin: 10px;
+}
+
+.widget-title>button {
+    color: @fg;
+    background: @surface0;
+    border-radius: 8px;
+    padding: 5px 15px;
+    border: 1px solid @border;
+}
+
+.widget-title>button:hover {
+    background: @bg_hl;
+    color: @purple;
+    box-shadow: 0 0 8px rgba(187, 154, 247, 0.4);
+}
+
+/* ───────────────── BULLES DE NOTIFICATION ───────────────── */
+/* Les notifications flottantes sur ton écran */
+.floating-notifications.background .notification-row .notification-background {
+    background-color: @bg;
+    border: 1px solid @border;
+    border-radius: 14px;
+    margin: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.45);
+}
+
+/* Les notifications dans le centre de contrôle */
+.control-center .notification-row .notification-background {
+    background-color: @bg_dark;
+    border: 1px solid alpha(@border, 0.5);
+    border-radius: 14px;
+    margin: 5px 0px;
+}
+
+/* Au survol d'une notification */
+.notification-row .notification-background:hover {
+    background-color: @bg_hl;
+    border: 1px solid @blue;
+}
+
+/* ───────────────── TEXTE DES NOTIFICATIONS ───────────────── */
+.notification {
+    padding: 12px;
+}
+
+.summary {
+    color: @purple; /* Titre en violet */
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.body {
+    color: @fg;
+    font-size: 13px;
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+/* ───────────────── BOUTONS D'ACTION ───────────────── */
+.notification-action {
+    border-top: 1px solid alpha(@sub, 0.3);
+}
+
+.notification-action button {
+    background: transparent;
+    color: @blue;
+    border-radius: 8px;
+    margin: 5px;
+}
+
+.notification-action button:hover {
+    background: @surface0;
+    color: @fg;
+}
+
+/* ───────────────── NIVEAUX D'URGENCE ───────────────── */
+/* Notification Critique (Couleur rouge) */
+.notification-row .notification-background.critical {
+    border: 2px solid @red;
+    box-shadow: 0 0 10px rgba(247, 118, 142, 0.3);
+}
+.notification-row .notification-background.critical .summary {
+    color: @red;
+}
